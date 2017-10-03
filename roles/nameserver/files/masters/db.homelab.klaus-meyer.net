@@ -9,11 +9,14 @@ $TTL 2D
                                 3H )    ; NX (TTL Negativ Cache)
 
 @                               IN      NS      ns1.homelab.klaus-meyer.net.
-                                IN      A       192.168.178.30
 
 ns1                             IN      A       192.168.178.30
 
 docker01                        IN      A       192.168.178.31
 docker02                        IN      A       192.168.178.32
 
-registry                        IN      CNAME   docker01.homelab.klaus-meyer.net.
+docker-swarm                    IN      A       192.168.178.31
+docker-swarm                    IN      A       192.168.178.32
+
+registry                        IN      CNAME   docker-swarm.homelab.klaus-meyer.net.
+hello                           IN      CNAME   docker-swarm.homelab.klaus-meyer.net.
