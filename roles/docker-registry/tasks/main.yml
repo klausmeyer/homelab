@@ -1,0 +1,17 @@
+- name: Configure node labels
+  command: docker node update --label-add deploy-registry=true docker01
+
+- name: Ensure stacks directory exists
+  file:
+    path: /home/deploy/docker/stacks
+    state: directory
+
+- name: Copy stack file
+  copy:
+    src: registry.yml
+    dest: /home/deploy/docker/stacks/registry.yml
+  register: registry_stack_definition
+
+- name: Deploy stack
+  command: docker stack deploy -c /home/deploy/docker/stacks/registry.yml registry
+  when: registry_stack_definition.changed

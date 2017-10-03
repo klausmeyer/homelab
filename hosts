@@ -1,0 +1,9 @@
+[nameserver]
+misc01.fritz.box
+
+[docker]
+docker01.fritz.box
+docker02.fritz.box
+
+[docker-registry]
+docker01.fritz.box

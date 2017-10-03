@@ -1,0 +1,19 @@
+;; db.homelab.klaus-meyer.net
+;;
+$TTL 2D
+@       IN      SOA     ns1.homelab.klaus-meyer.net. hostmaster.klaus-meyer.net. (
+                        2017100317      ; Serial
+                                8H      ; Refresh
+                                2H      ; Retry
+                                4W      ; Expire
+                                3H )    ; NX (TTL Negativ Cache)
+
+@                               IN      NS      ns1.homelab.klaus-meyer.net.
+                                IN      A       192.168.178.30
+
+ns1                             IN      A       192.168.178.30
+
+docker01                        IN      A       192.168.178.31
+docker02                        IN      A       192.168.178.32
+
+registry                        IN      CNAME   docker01.homelab.klaus-meyer.net.

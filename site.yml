@@ -1,0 +1,23 @@
+- name: Baseline
+  hosts: all
+  become: yes
+  roles:
+    - baseline
+
+- name: Nameserver
+  hosts: nameserver
+  become: yes
+  roles:
+    - nameserver
+
+- name: Docker
+  hosts: docker
+  become: yes
+  roles:
+    - docker
+
+- name: Docker Registry
+  hosts: docker-registry
+  become: yes
+  roles:
+    - docker-registry
