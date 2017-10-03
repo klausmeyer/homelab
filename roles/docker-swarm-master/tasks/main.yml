@@ -1,0 +1,22 @@
+- name: Docker Swarm Init
+  command: docker swarm init
+  args:
+    creates: /var/lib/docker/swarm/state.json
+
+- name: Create global network
+  shell: docker network create --attachable --driver=overlay homelab || exit 0
+
+- name: Ensure stacks directory exists
+  file:
+    path: /home/deploy/docker/stacks
+    state: directory
+
+- name: Copy stack file
+  copy:
+    src: nginx.yml
+    dest: /home/deploy/docker/stacks/nginx.yml
+  register: nginx_stack_definition
+
+- name: Deploy stack
+  command: docker stack deploy -c /home/deploy/docker/stacks/nginx.yml nginx
+  when: nginx_stack_definition.changed

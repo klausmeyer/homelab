@@ -16,6 +16,12 @@
   roles:
     - docker
 
+- name: Docker Swarm
+  hosts: docker-swarm-master
+  become: yes
+  roles:
+    - docker-swarm-master
+
 - name: Docker Registry
   hosts: docker-registry
   become: yes

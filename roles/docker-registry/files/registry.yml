@@ -8,19 +8,27 @@ services:
       - "/home/deploy/docker/volumes/registry:/var/lib/registry"
     ports:
       - "5000:5000"
+    networks:
+      - homelab
     deploy:
       placement:
         constraints:
           - node.labels.deploy-registry==true
+
   frontend:
     image: klausmeyer/docker-registry-browser
     environment:
       - "DOCKER_REGISTRY_URL=http://backend:5000"
       - "ENABLE_DELETE_IMAGES=true"
       - "PUBLIC_REGISTRY_URL=registry.homelab.klaus-meyer.net:5000"
+      - "VIRTUAL_HOST=registry.homelab.klaus-meyer.net"
     ports:
       - "8080:8080"
+    networks:
+      - homelab
     deploy:
-      placement:
-        constraints:
-          - node.labels.deploy-registry==true
+      replicas: 2
+
+networks:
+  homelab:
+    external: true
