@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   backend:
     image: registry:2
@@ -21,13 +21,15 @@ services:
       - "DOCKER_REGISTRY_URL=http://backend:5000"
       - "ENABLE_DELETE_IMAGES=true"
       - "PUBLIC_REGISTRY_URL=registry.homelab.klaus-meyer.net:5000"
-      - "VIRTUAL_HOST=registry.homelab.klaus-meyer.net"
-    ports:
-      - "8080:8080"
     networks:
       - homelab
     deploy:
-      replicas: 2
+      labels:
+        - traefik.backend.loadbalancer.swarm=true
+        - traefik.backend=registry-frontend
+        - traefik.frontend.rule=Host:registry.homelab.klaus-meyer.net
+        - traefik.port=8080
+      replicas: 4
 
 networks:
   homelab:

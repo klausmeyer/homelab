@@ -13,10 +13,10 @@
 
 - name: Copy stack file
   copy:
-    src: nginx.yml
-    dest: /home/deploy/docker/stacks/nginx.yml
-  register: nginx_stack_definition
+    src: traefik.yml
+    dest: /home/deploy/docker/stacks/traefik.yml
+  register: traefik_stack_definition
 
 - name: Deploy stack
-  command: docker stack deploy -c /home/deploy/docker/stacks/nginx.yml nginx
-  when: nginx_stack_definition.changed
+  command: docker stack deploy -c /home/deploy/docker/stacks/traefik.yml traefik
+  when: traefik_stack_definition.changed

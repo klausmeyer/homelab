@@ -1,0 +1,26 @@
+version: "3"
+services:
+  proxy:
+    image: traefik
+    command:
+      - --docker
+      - --docker.swarmmode
+      - --docker.domain=homelab.klaus-meyer.net
+      - --docker.watch
+      - --web
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - homelab
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role==manager
+
+networks:
+  homelab:
+    external: true
