@@ -2,6 +2,8 @@ version: '3'
 services:
   backend:
     image: registry:2
+    environment:
+      - "REGISTRY_STORAGE_DELETE_ENABLED=true"
     volumes:
       - "/home/deploy/docker/volumes/registry:/var/lib/registry"
     ports:
@@ -14,6 +16,8 @@ services:
     image: klausmeyer/docker-registry-browser
     environment:
       - "DOCKER_REGISTRY_URL=http://backend:5000"
+      - "ENABLE_DELETE_IMAGES=true"
+      - "PUBLIC_REGISTRY_URL=registry.homelab.klaus-meyer.net:5000"
     ports:
       - "8080:8080"
     deploy:
