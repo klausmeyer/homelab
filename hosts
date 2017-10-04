@@ -4,6 +4,7 @@ misc01.fritz.box
 [docker]
 docker01.fritz.box
 docker02.fritz.box
+docker03.fritz.box
 
 [docker-swarm-master]
 docker01.fritz.box

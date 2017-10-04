@@ -2,7 +2,7 @@
 ;;
 $TTL 2D
 @       IN      SOA     ns1.homelab.klaus-meyer.net. hostmaster.klaus-meyer.net. (
-                        2017100317      ; Serial
+                        2017100408      ; Serial
                                 8H      ; Refresh
                                 2H      ; Retry
                                 4W      ; Expire
@@ -14,9 +14,9 @@ ns1                             IN      A       192.168.178.30
 
 docker01                        IN      A       192.168.178.31
 docker02                        IN      A       192.168.178.32
+docker03                        IN      A       192.168.178.33
 
-docker-swarm                    IN      A       192.168.178.31
-docker-swarm                    IN      A       192.168.178.32
+docker-proxy                    IN      A       192.168.178.31
+docker-proxy                    IN      A       192.168.178.32
 
-registry                        IN      CNAME   docker-swarm.homelab.klaus-meyer.net.
-hello                           IN      CNAME   docker-swarm.homelab.klaus-meyer.net.
+registry                        IN      CNAME   docker-proxy.homelab.klaus-meyer.net.
