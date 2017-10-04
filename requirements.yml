@@ -1,0 +1,3 @@
+- name: resmo.bind
+  src: https://github.com/resmo/ansible-role-bind.git
+  version: "443e5ea"
